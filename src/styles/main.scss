@@ -1,1 +1,44 @@
 @import "variables";
+
+html{
+	font-size: 10px;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body{
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	width: 100%;
+	padding: 0 1rem;
+	margin: 0 auto;
+	
+	@media (min-width: $md) {
+		max-width: 76.7rem;
+	}
+	@media (min-width: $lg) {
+		max-width: 91rem;
+	}
+	@media (min-width: $lg) {
+		max-width: 120rem;
+	}
+}
+
+.container--medium{
+	max-width: 100rem;
+}
+
+p,span,strong,div,a{
+	font-size: 1.4rem;
+	@media (min-width: $md) {
+		font-size: 1.6rem;
+	}
+}
+
