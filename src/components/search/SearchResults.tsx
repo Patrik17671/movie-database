@@ -5,6 +5,7 @@ import PaginationComponent from '../pagination/Pagination';
 import ResultsList from './ResultsList';
 import Typography from '@mui/material/Typography';
 import { isEmpty } from 'lodash';
+import styles from './Search.module.scss';
 
 const SearchResults: React.FC = () => {
   const searchTerm = useSelector((state: RootState) => state.movies.searchTerm);
@@ -36,12 +37,12 @@ const SearchResults: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Typography gutterBottom variant="h2" component="div">
         Searched film: {searchTerm}
       </Typography>
       <ResultsList loading={loading} searchResults={searchResults} error={error} />
-      {totalPages > 0 ? <PaginationComponent totalPages={totalPages} /> : ''}
+      {totalPages > 1 ? <PaginationComponent totalPages={totalPages} /> : ''}
     </div>
   );
 };
