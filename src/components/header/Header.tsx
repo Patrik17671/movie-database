@@ -1,15 +1,30 @@
 import styles from './Header.module.scss';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
+import { Link as RouterLink } from 'react-router-dom';
+import { AppBar, Toolbar, Badge, Link, Box } from '@mui/material';
 const Header = () => {
+  const favoriteMovieIds = useSelector((state: RootState) => state.movies.favoriteMovieIds);
+  const favoritesCount = favoriteMovieIds.length;
+
   return (
-    <header className={styles.header}>
-      <div className={'container'}>
-        <nav className={styles.nav}>
-          <Link to="/">Home</Link>
-          <Link to="/favorites">Favorites</Link>
-        </nav>
-      </div>
-    </header>
+    <AppBar position="static">
+      <Toolbar className={styles.toolbar}>
+        <Box className={'container ' + styles.nav}>
+          <Link component={RouterLink} to="/">
+            Home
+          </Link>
+          <Badge
+            badgeContent={favoritesCount}
+            sx={{ '.MuiBadge-badge': { backgroundColor: '#242424', color: '#fff' } }}
+          >
+            <Link component={RouterLink} to="/favorites">
+              Favorites
+            </Link>
+          </Badge>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 };
 export default Header;

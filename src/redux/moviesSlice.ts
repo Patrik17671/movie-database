@@ -6,6 +6,7 @@ type MoviesState = {
   movies: MovieSearchType;
   loading: boolean;
   error: string | null;
+  favoriteMovieIds: string[];
 };
 
 const initialState: MoviesState = {
@@ -13,6 +14,7 @@ const initialState: MoviesState = {
   movies: { Search: [], totalResults: '0', Resposne: '', Error: '' },
   loading: false,
   error: null,
+  favoriteMovieIds: JSON.parse(localStorage.getItem('favoriteMovieIds') || '[]'),
 };
 
 type FetchMoviesArgs = {
@@ -33,7 +35,7 @@ export const fetchMovies = createAsyncThunk(
       if (page) queryParams += `&page=${page}`;
 
       const response = await fetch(
-        `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&${queryParams}`,
+        `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&${queryParams}`,
       );
       const data = await response.json();
 
@@ -56,6 +58,12 @@ export const moviesSlice = createSlice({
     setSearchTerm: (state, action: PayloadAction<string>) => {
       state.searchTerm = action.payload;
     },
+    addToFavorites: (state, action: PayloadAction<string>) => {
+      state.favoriteMovieIds.push(action.payload);
+    },
+    removeFromFavorites: (state, action: PayloadAction<string>) => {
+      state.favoriteMovieIds = state.favoriteMovieIds.filter(id => id !== action.payload);
+    },
   },
   //Fetching states
   extraReducers: builder => {
@@ -75,6 +83,6 @@ export const moviesSlice = createSlice({
   },
 });
 
-export const { setSearchTerm } = moviesSlice.actions;
+export const { setSearchTerm, addToFavorites, removeFromFavorites } = moviesSlice.actions;
 
 export default moviesSlice.reducer;

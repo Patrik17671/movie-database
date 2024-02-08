@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { MovieDetailParametersType, MovieDetailType } from '../../types/moviesTypes';
-import { Typography, Grid, Paper, Box, Rating, CardMedia, Chip, Tooltip } from '@mui/material';
+import { Typography, Grid, Paper, Box, Rating, Chip, Tooltip } from '@mui/material';
 import MovieIcon from '@mui/icons-material/Movie';
 import TvIcon from '@mui/icons-material/Tv';
 import OndemandVideoIcon from '@mui/icons-material/OndemandVideo';
@@ -14,12 +14,13 @@ import { capitalize } from 'lodash';
 import { getImageSrc } from '../../utils';
 import DetailPageSkeleton from './DetailPageSkeleton';
 import Alert from '@mui/material/Alert';
+import FavoriteStar from '../../components/favorites/FavoriteStar';
 
 //Fetching movie data
 const fetchMovieDetails = async (movieId: string | undefined): Promise<MovieDetailType> => {
   try {
     const response = await fetch(
-      `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&i=${movieId}&plot=full`,
+      `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_API_KEY}&i=${movieId}&plot=full`,
     );
     if (!response.ok) {
       throw new Error('Network response was not ok');
@@ -123,6 +124,7 @@ const DetailPage: FC = () => {
           <Grid item xs={12} md={8}>
             <Typography variant="h3" gutterBottom component="h1">
               {movie.Title} ({movie.Year})
+              <FavoriteStar movieId={movie.imdbID} />
             </Typography>
             <Box display="flex" flexDirection="row" alignItems="center">
               {map(split(movie.Genre, ', '), genre => {

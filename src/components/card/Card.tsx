@@ -7,10 +7,11 @@ import CardActions from '@mui/material/CardActions';
 import { Link } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import { FC } from 'react';
-import { MovieType } from '../../types/moviesTypes';
+import { MovieDetailType, MovieType } from '../../types/moviesTypes';
+import FavoriteStar from '../favorites/FavoriteStar';
 
 type CardProps = {
-  item: MovieType;
+  item: MovieType | MovieDetailType;
 };
 const CardComponent: FC<CardProps> = ({ item }) => {
   return (
@@ -24,6 +25,7 @@ const CardComponent: FC<CardProps> = ({ item }) => {
       <CardContent>
         <Typography gutterBottom variant="h5" component="div" className={styles.cardTitle}>
           {item.Title}
+          <FavoriteStar movieId={item.imdbID} />
         </Typography>
       </CardContent>
       <CardActions>
