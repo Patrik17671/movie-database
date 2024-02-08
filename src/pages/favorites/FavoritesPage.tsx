@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 import { Typography } from '@mui/material';
 import { MovieDetailType } from '../../types/moviesTypes';
 import FavoritesList from './FavoritesList';
+import styles from './FavoritesPage.module.scss';
 
 const fetchMovies = async (movieIds: string[]): Promise<MovieDetailType[]> => {
   try {
@@ -40,7 +41,7 @@ const FavoritesPage = () => {
   );
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       <Typography variant={'h1'} component={'h1'}>
         Favorites
       </Typography>
