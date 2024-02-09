@@ -3,7 +3,7 @@ import { RootState } from '../../redux/store';
 import { useQuery } from 'react-query';
 import { Typography } from '@mui/material';
 import { MovieDetailType } from '../../types/moviesTypes';
-import FavoritesList from './FavoritesList';
+import FavoritesList from '../../components/favorites/FavoritesList';
 import styles from './FavoritesPage.module.scss';
 
 const fetchMovies = async (movieIds: string[]): Promise<MovieDetailType[]> => {
