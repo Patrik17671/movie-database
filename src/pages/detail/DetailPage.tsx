@@ -52,15 +52,24 @@ const DetailPage: FC = () => {
 
   if (error)
     return (
-      <div>
+      <Box pt={2}>
         <Alert severity="error">An error occurred: {error?.message}</Alert>
-      </div>
+      </Box>
     );
+
+  if (movie && movie.Error) {
+    return (
+      <Box pt={2}>
+        <Alert severity="error">{movie.Error}</Alert>
+      </Box>
+    );
+  }
+
   if (!movie) {
     return (
-      <div>
-        <Alert severity="error">Movie was not found!</Alert>
-      </div>
+      <Box pt={2}>
+        <Alert severity="error">Not found</Alert>
+      </Box>
     );
   }
 

@@ -48,6 +48,7 @@ export type MovieDetailType = {
   Production: string;
   Website: string;
   Response: string;
+  Error?: string;
 };
 
 export type MovieDetailParametersType = {
@@ -68,4 +69,5 @@ export type MovieDetailParametersType = {
   BoxOffice: string;
   Production: string;
   Website: string;
+  Error?: string;
 };

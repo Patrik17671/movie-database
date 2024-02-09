@@ -6,6 +6,7 @@ import HomePage from './pages/homepage/HomePage';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import FavoritesSkeleton from './components/favorites/FavoritesSkeleton';
 import DetailPageSkeleton from './pages/detail/DetailPageSkeleton';
+import NotFound from './pages/NotFound';
 const DetailPage = React.lazy(() => import('./pages/detail/DetailPage'));
 const FavoritesPage = React.lazy(() => import('./pages/favorites/FavoritesPage'));
 
@@ -35,6 +36,7 @@ function App() {
                   </Suspense>
                 }
               />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </Router>
