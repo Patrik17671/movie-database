@@ -89,6 +89,7 @@ const Search: FC = () => {
         <TextField
           label="Search for..."
           variant="outlined"
+          name={'search'}
           value={inputValue}
           onChange={handleInputChange}
           error={!isSearchTermValid}
@@ -97,6 +98,7 @@ const Search: FC = () => {
         <TextField
           label="Year"
           variant="outlined"
+          name={'year'}
           value={year}
           onChange={handleYearChange}
           error={!isYearValid}
@@ -104,7 +106,7 @@ const Search: FC = () => {
         />
         <FormControl variant="outlined" className={styles.type}>
           <InputLabel>Type</InputLabel>
-          <Select value={type} onChange={handleTypeChange} label="Type">
+          <Select value={type} onChange={handleTypeChange} label="Type" name={'type'}>
             <MenuItem value={''}>
               <em>None</em>
             </MenuItem>

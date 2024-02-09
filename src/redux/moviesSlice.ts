@@ -9,7 +9,7 @@ type MoviesState = {
   favoriteMovieIds: string[];
 };
 
-const initialState: MoviesState = {
+export const initialState: MoviesState = {
   searchTerm: '',
   movies: { Search: [], totalResults: '0', Resposne: '', Error: '' },
   loading: false,
